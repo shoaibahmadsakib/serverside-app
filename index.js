@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const jwt = require('jsonwebtoken')
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 const port = process.env.PORT || 5000;
@@ -23,6 +23,13 @@ async function run() {
     await client.connect();
     const serviceCollection = client.db("genius-car").collection("services");
     const orderCollection = client.db("genius-car").collection("order");
+
+
+
+    //auth
+    app.get('/login',async(req,res)=>{
+
+    })
 
     app.get("/service", async (req, res) => {
       const query = {};
@@ -72,7 +79,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Running Genius Server");
+  res.send("Running Genius Server ki r kobo");
 });
 
 app.listen(port, () => {
